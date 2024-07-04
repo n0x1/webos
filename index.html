@@ -8,22 +8,24 @@
 
   <body style="background-image:url(bliss.jpeg); background-size:cover; margin:0; width:100vw; height:100vh; overflow-y: hidden; font-family: 'Roboto Mono', monospace">
     <div class="sysNavBar" style="display:flex; margin: 0; justify-content:space-between; gap:32px; align-items:center; width:100vw; background-color:rgba(0,0,0,0.5); backdrop-filter: blur(10px); height:5%">
-      <p style="box-shadow: 1px 1px 5px purple, -1px -1px 4px cyan; background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-left:12px;">
+      <p id="welcomeopen" style="box-shadow: 1px 1px 5px purple, -1px -1px 4px cyan; background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-left:12px;">
         System: cOS v2K
       </p>
       <p id="sysTime" style="background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-right:12px;">
         Loading...
       </p>
     </div>
-    <div class="window" id="welcome" style="background-color: pink; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:80%; overflow:scroll;">
-      <div>      
-        <p id="welcomeheader" style="cursor: grab; position:absolute; background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px;">✣</p>
+    
+    <div class="window" id="welcome" style="background-color: pink; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:80%; width:600px; overflow:scroll;display:flex;flex-direction:column;">
+      <div style="display:flex;justify-content:space-between;">      
+        <p id="welcomeheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 200px; height:25px; text-align:center;justify-content:center;">✣</p>
+        <p style="cursor: pointer; margin:0; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" id="welcomeclose">x</p>
       </div>
+
 <div>
       <h1 style="text-align: center;">welcome to cOS</h1>
         <p>Currently on repeat:</p>
         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/70L6nHORQsblY813yNqUR3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </body>
       <p>My dog, Malia</p>
       <img src="malia.jpeg" width="20%" height="auto" style="object-fit: cover;">
       <h2 style="color:darkolivegreen;"'>My hobbies</h2>
