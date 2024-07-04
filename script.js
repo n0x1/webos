@@ -2,30 +2,89 @@ setInterval(function () {
   document.querySelector("#sysTime").innerHTML = new Date().toLocaleString();
 }, 1000);
 
+var topBar = document.querySelector("#sysNavBar")
 var welcomeScreen = document.querySelector("#welcome")
+var notesApp = document.querySelector("#notesicon")
+
 function closeWindow(element) {
   element.style.display = "none"
 }
+
 function openWindow(element) {
   element.style.display = "flex"
+  biggestIndex++;  // Increment biggestIndex by 1
+  element.style.zIndex = biggestIndex;
+  topBar.style.zIndex = biggestIndex + 1;
 }
 
 var welcomeScreenClose = document.querySelector("#welcomeclose")
-
 var welcomeScreenOpen = document.querySelector("#welcomeopen")
+
+var notesOpen = document.querySelector("#notesicon")
+
+var selectedIcon = undefined
+
+function selectIcon(element) {
+  element.classList.add("selected");
+  selectedIcon = element
+} 
+
+function deselectIcon(element) {
+  element.classList.remove("selected");
+  selectedIcon = undefined
+}
+
+function handleIconTap(element, app) {
+  if (element.classList.contains("selected")) {
+    deselectIcon(element)
+    openWindow(app)
+  } else {
+    selectIcon(element)
+  }
+}
+
 
 welcomeScreenClose.addEventListener("click", function() {
   closeWindow(welcomeScreen);
 });
-
 welcomeScreenOpen.addEventListener("click", function() {
   openWindow(welcomeScreen);
 });
 
+notesApp.addEventListener("click", function() {
+  handleIconTap(notesApp, notesScreen);
+});
+
+var notesScreen = document.querySelector("#notes")
+
+var notesScreenClose = document.querySelector("#notesclose")
+
+notesScreenClose.addEventListener("click", () => closeWindow(notesScreen));
 
 // Make the DIV element draggable:
 dragElement(document.getElementById("welcome"));
+dragElement(document.querySelector("#notes"))
 
+//z axis stuff
+var biggestIndex = 1;
+
+function addWindowTapHandling(element) {
+  element.addEventListener("mousedown", () =>
+    handleWindowTap(element)
+  )
+}
+
+addWindowTapHandling(notesScreen);
+addWindowTapHandling(welcomeScreen);
+
+function handleWindowTap(element) {
+  biggestIndex++;  // Increment biggestIndex by 1
+  element.style.zIndex = biggestIndex;
+  topBar.style.zIndex = biggestIndex + 1;
+  deselectIcon(selectedIcon)
+}
+
+//dragging stuff
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
   // Step 2: Set up variables to keep track of the element's position.
