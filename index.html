@@ -8,8 +8,8 @@
 
   <body style="background-image:url(bliss.jpeg); background-size:cover; margin:0; width:100vw; height:100vh; overflow-y: hidden; font-family: 'Roboto Mono', monospace">
     <div class="sysNavBar" style="display:flex; margin: 0; justify-content:space-between; gap:32px; align-items:center; width:100vw; background-color:rgba(0,0,0,0.5); backdrop-filter: blur(10px); height:5%">
-      <p id="welcomeopen" style="box-shadow: 1px 1px 5px purple, -1px -1px 4px cyan; background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-left:12px;">
-        System: cOS v2K
+      <p id="welcomeopen" style="cursor: pointer; box-shadow: 1px 1px 5px purple, -1px -1px 4px cyan; background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-left:12px;">
+        System: cOS v2K ⚙️
       </p>
       <p id="sysTime" style="background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-right:12px;">
         Loading...
@@ -22,10 +22,9 @@
         <p style="cursor: pointer; margin:0; position:absolute; margin-left:560px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" id="welcomeclose">x</p>
       </div> 
     <div>
-      <h1 style="text-align: center;">welcome to cOS</h1>
-      <p style="text-align: center;"><i>repopen this page by clicking in the top left</i></p>
-      <p style="font-weight:bold;">Malia:</p>
-      <img src="malia.jpeg" width="20%" height="auto" style="object-fit: cover;">
+      <h1 style="text-align: center;margin-bottom:0;padding-bottom:0;">welcome to cOS</h1>
+      <p style="text-align:center;">A highly-customizable, clutter-free OS designed for daily life: from school or work to entertainment.<br></p>
+      <p style="text-align: center;font-size:10px;"><i>repopen this settings page by clicking in the top left</i></p>
       <h2 style="color:darkolivegreen;">My hobbies</h2>
       <ul>
         <li>Linguistics</li>
@@ -46,9 +45,13 @@
     <img src="./notebook.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
     <p style="margin: 0px; color: #fff;">Notes</p>
   </div>
-    <div id="musicicon" style="text-align: center; padding: 16px; filter: drop-shadow(0 0 8px black); width: fit-content">
+  <div id="musicicon" style="text-align: center; padding: 16px; filter: drop-shadow(0 0 8px black); width: fit-content">
     <img src="./music.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
     <p style="margin: 0px; color: #fff;">Music</p>
+  </div>
+  <div id="photosicon" style="text-align: center; padding: 16px; filter: drop-shadow(0 0 8px black); width: fit-content">
+    <img src="./photos.png" style="width: 64px; height: 64px; border-radius:3px;">
+    <p style="margin: 0px; color: #fff;">Photos</p>
   </div>
 </div>
 
@@ -58,20 +61,45 @@
     <p id="notesheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
     <p id="notesclose" style="cursor: pointer; margin:0; position:absolute; margin-left:460px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
   </div> 
-  
-  <div id="notesContent"></div>
-
-
-  <p style="size:10px"><i>add more notes in script.js content array</i></p>
+  <div style="background-color: #fff; margin: 6px; border-radius: 12px; width: 420; height: 85%; padding: 16px; display:flex;">
+    <div id="sidebar" style="background-color: #F9F9F9; width: 120px; margin-right: 16px; padding: 16px; border-radius: 16px;">
     </div>
+  <div id="notesContent" style="padding:12px;"></div>
+</div>
 
-<div class="window" id="music" style="display:none; background-color: olive; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:50%; width:530px; overflow:scroll;display:none;flex-direction:column;">
+
+
+  <p style="size:10px"><i>add more pages in script.js content array</i></p>
+</div>
+
+<div class="window" id="music" style="display:none; background-color: olive; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:55%; width:530px; overflow:scroll;display:none;flex-direction:column;">
   <div style="display:flex;justify-content:space-between;">      
     <p id="musicheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
-    <p id="musicclose" style="cursor: pointer; margin:0; position:absolute; margin-left:460px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
+    <p id="musicclose" style="cursor: pointer; margin:0; position:absolute; margin-left:490px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
   </div> 
-      <p>Currently on repeat 🎧</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/70L6nHORQsblY813yNqUR3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <div>
+    <p style="margin:1px">Currently on repeat 🎧</p>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/70L6nHORQsblY813yNqUR3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <p style="margin:1px">Study 📚</p>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0Iq9QuMnxnZ5SvP2ZMJ3pM?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7ne2hzW4jaU5tacaCI4kJH?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <p style="margin:1px">Walks 🌙</p>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIehW84no4iVk?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0M5yumtF6X3h5ruL24VfNi?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+    
+</div>
+
+
+<div class="window" id="photos" style="display:none; background-color: #ffefff; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:90%; width:1200px; overflow:scroll;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;">      
+    <p id="photosheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
+    <p id="photosclose" style="cursor: pointer; margin:0; position:absolute; margin-left:1160px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
+  </div> 
+
+  <div id="photosContent" style="display:flex;flex-direction:row">
+  </div>
+  
 </div>
     <script src="script.js"></script>
   </body>
