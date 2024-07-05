@@ -133,9 +133,16 @@ var content = [
 
 var photos = [
   {
-    content: `<img src="malia.jpeg" width="auto" height="500px" style="object-fit: cover;">`
-  }
+    content: `<div><img src="malia.jpeg" class="photoAppPhoto"></div>`
+  },
+  {
+    content: `<div><img src="malia2.jpeg" class="photoAppPhoto"></div>`
+  },
+  {
+    content: `<div><img src="malia3.jpeg" class="photoAppPhoto"></div>`
+  },
 ]
+
 
 function setNotesContent(index) {
 
@@ -148,7 +155,7 @@ function setPhotosContent(index) {
 
   var photosContent = document.querySelector("#photosContent")
 
-  photosContent.innerHTML = photos[index].content
+  photosContent.innerHTML += photos[index].content
 }
 for (let i = 0; i < photos.length; i++) {
   setPhotosContent(i)

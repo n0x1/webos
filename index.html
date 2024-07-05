@@ -56,7 +56,7 @@
 </div>
 
 
-<div class="window" id="notes" style="display:none; background-color: lightgray; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:80%; width:500px; overflow:scroll;display:none;flex-direction:column;">
+<div class="window" id="notes" style="display:none; background-color: lightgray; border:solid; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:80%; width:500px; overflow:scroll;display:none;flex-direction:column;">
   <div style="display:flex;justify-content:space-between;">      
     <p id="notesheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
     <p id="notesclose" style="cursor: pointer; margin:0; position:absolute; margin-left:460px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
@@ -72,12 +72,12 @@
   <p style="size:10px"><i>add more pages in script.js content array</i></p>
 </div>
 
-<div class="window" id="music" style="display:none; background-color: olive; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:55%; width:530px; overflow:scroll;display:none;flex-direction:column;">
-  <div style="display:flex;justify-content:space-between;">      
-    <p id="musicheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
-    <p id="musicclose" style="cursor: pointer; margin:0; position:absolute; margin-left:490px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
+<div class="window" id="music" style="display:none; overflow:hidden; background-color: olive; border:solid; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:55%; width:530px;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;position:sticky;">      
+    <p id="musicheader" style="cursor: grab;  background-color: rgba(255,255,255,0.5); margin: 0; padding-right:500px; height:25px;"></p>
+    <p id="musicclose" style="cursor: pointer; margin:0; background-color:rgba(255,12,12,0.8); padding-left:10px; padding-right:20px;height:25px;" >x</p>
   </div> 
-  <div>
+  <div style="overflow:scroll;padding-right:8px;">
     <p style="margin:1px">Currently on repeat 🎧</p>
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/70L6nHORQsblY813yNqUR3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
   <p style="margin:1px">Study 📚</p>
@@ -91,16 +91,16 @@
 </div>
 
 
-<div class="window" id="photos" style="display:none; background-color: #ffefff; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:90%; width:1200px; overflow:scroll;display:none;flex-direction:column;">
-  <div style="display:flex;justify-content:space-between;">      
-    <p id="photosheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
-    <p id="photosclose" style="cursor: pointer; margin:0; position:absolute; margin-left:1160px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
-  </div> 
 
-  <div id="photosContent" style="display:flex;flex-direction:row">
+<div class="window" id="photos" style="display:none; background-color: #bfafbf; border:solid;  border-radius:12px; position:absolute; top:50%;left:50%; overflow:hidden; transform: translate(-50%, -50%); height:90%; width:1200px; display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;position:sticky;right:1190px;">      
+    <p id="photosheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding:0 545px; height:25px; border-radius:12px 0 0 0; text-align:center;justify-content:center;position:sticky;right:1190px;">Photos</p>
+    <p id="photosclose" style="cursor: pointer; margin:0; padding: 0 12.5px; background-color:rgba(255,12,12,0.8); height:25px; " >x</p>
   </div>
-  
+  <div id="photosContent" style="overflow:scroll;display:flex;flex-direction:row;margin-bottom:8px;">
+  </div>
 </div>
+  
     <script src="script.js"></script>
   </body>
 </html>
