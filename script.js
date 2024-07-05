@@ -116,6 +116,19 @@ function handleWindowTap(element) {
 // Content for notes app
 var content = [
   {
+    title: `Keybinds`,
+    date: "7/5/2024",
+    content: `<div style="overflow-y:scroll">
+    <p contenteditable="True">
+      <b>command+B: Bold</b><br>
+      <i>command+I: Italic</i><br>
+      <u>command+U: Underline</u><br><br>
+      Combinations work as well!
+
+    </p>
+</div>`
+  },
+  {
     title: "Goals",
     date: "7/4/2024",
     content: ` 
@@ -126,6 +139,22 @@ var content = [
             Become a pro hack clubber<br>
   
           </p>
+    </div>
+    `
+  },
+  {
+    title: "Hobbies",
+    date: "7/5/2024",
+    content: `
+    <div style="overflow-y:scroll">
+    <p contenteditable="True">
+    <b>Linguistics</b><br>
+      I am studying Japanese. I also enjoy conlanging and want to get better at computational aspects.<br>
+    <b>Gaming</b><br>
+      I enjoy fighting games, RPGs, roguelites (Metroidvania), and some FPS games.<br>
+    <b>Music</b><br>
+      I play piano and guitar. I want to also improve at production (rock).
+    </p> 
     </div>
     `
   }
@@ -149,6 +178,8 @@ function setNotesContent(index) {
   var notesContent = document.querySelector("#notesContent")
 
   notesContent.innerHTML = content[index].content
+  notesContent.style.width = "310px"
+
 }
 
 function setPhotosContent(index) {
@@ -169,10 +200,10 @@ function addToSideBar(index) {
   var note = content[index];
   var newDiv = document.createElement("div");
   newDiv.innerHTML = `
-  <p style="margin: 0px;cursor: pointer;">
+  <p style="margin: 0px;cursor: pointer;text-align:left;">
     ${note.title}
   </p>
-  <p style="font-size: 12px; margin: 0px;cursor: pointer;">
+  <p style="font-size: 12px; margin: 0px;cursor: pointer;text-align:left;">
     ${note.date}
   </p>
 `;
