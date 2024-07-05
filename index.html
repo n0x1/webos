@@ -23,9 +23,8 @@
       </div> 
     <div>
       <h1 style="text-align: center;">welcome to cOS</h1>
-        <p>Currently on repeat:</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/70L6nHORQsblY813yNqUR3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <p>My dog, Malia</p>
+      <p style="text-align: center;"><i>repopen this page by clicking in the top left</i></p>
+      <p style="font-weight:bold;">Malia:</p>
       <img src="malia.jpeg" width="20%" height="auto" style="object-fit: cover;">
       <h2 style="color:darkolivegreen;">My hobbies</h2>
       <ul>
@@ -47,6 +46,10 @@
     <img src="./notebook.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
     <p style="margin: 0px; color: #fff;">Notes</p>
   </div>
+    <div id="musicicon" style="text-align: center; padding: 16px; filter: drop-shadow(0 0 8px black); width: fit-content">
+    <img src="./music.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
+    <p style="margin: 0px; color: #fff;">Music</p>
+  </div>
 </div>
 
 
@@ -54,31 +57,22 @@
   <div style="display:flex;justify-content:space-between;">      
     <p id="notesheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
     <p id="notesclose" style="cursor: pointer; margin:0; position:absolute; margin-left:460px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
-    <div style="margin-right:10px;"></div>
- 
   </div> 
-
-  <div
-  style="background-color: #fff; margin: 6px; border-radius: 12px; width: 420; height: 85%; padding: 16px; font-family: Courier; display: flex;">
-  <div style="background-color: #F9F9F9; width: 120px; margin-right: 16px; padding: 16px; border-radius: 16px;">
-    <p style="margin: 0px;">Goals</p>
-    <p style="font-size: 12px; margin: 0px;">07/04/2024</p>
-  </div>
+  
+  <div id="notesContent"></div>
 
 
-  <div style="overflow-y:scroll">
-        <p contenteditable="True">
-          Drink 64oz water daily<br>
-          Skincare routine morning & night<br>
-          Become a pro hack clubber
+  <p style="size:10px"><i>add more notes in script.js content array</i></p>
+    </div>
 
-        </p>
-  </div>
-      
-
+<div class="window" id="music" style="display:none; background-color: olive; border:solid; padding:0 14px 0; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:50%; width:530px; overflow:scroll;display:none;flex-direction:column;">
+  <div style="display:flex;justify-content:space-between;">      
+    <p id="musicheader" style="cursor: grab;  background-color: rgba(255,255,255,0.8); margin: 0; border-radius:12px; padding: 0 50%; height:25px; text-align:center;justify-content:center;">✣</p>
+    <p id="musicclose" style="cursor: pointer; margin:0; position:absolute; margin-left:460px; background-color:rgba(255,12,12,0.8); padding:0 20px; border-radius:99px; height:25px;" >x</p>
+  </div> 
+      <p>Currently on repeat 🎧</p>
+        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/70L6nHORQsblY813yNqUR3?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </div>
-
-
     <script src="script.js"></script>
   </body>
 </html>

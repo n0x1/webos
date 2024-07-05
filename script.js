@@ -22,6 +22,7 @@ var welcomeScreenOpen = document.querySelector("#welcomeopen")
 
 var notesOpen = document.querySelector("#notesicon")
 
+
 var selectedIcon = undefined
 
 function selectIcon(element) {
@@ -55,15 +56,25 @@ notesApp.addEventListener("click", function() {
   handleIconTap(notesApp, notesScreen);
 });
 
+var musicApp = document.querySelector("#musicicon")
+musicApp.addEventListener("click", function() {
+  handleIconTap(musicApp, musicScreen);
+});
+
 var notesScreen = document.querySelector("#notes")
 
 var notesScreenClose = document.querySelector("#notesclose")
 
+var musicScreenClose = document.querySelector("#musicclose")
+
 notesScreenClose.addEventListener("click", () => closeWindow(notesScreen));
+
+musicScreenClose.addEventListener("click", () => closeWindow(musicScreen));
 
 // Make the DIV element draggable:
 dragElement(document.getElementById("welcome"));
-dragElement(document.querySelector("#notes"))
+dragElement(document.querySelector("#notes"));
+dragElement(document.querySelector("#music"));
 
 //z axis stuff
 var biggestIndex = 1;
@@ -74,8 +85,10 @@ function addWindowTapHandling(element) {
   )
 }
 
+var musicScreen = document.querySelector("#music");
 addWindowTapHandling(notesScreen);
 addWindowTapHandling(welcomeScreen);
+addWindowTapHandling(musicScreen);
 
 function handleWindowTap(element) {
   biggestIndex++;  // Increment biggestIndex by 1
@@ -84,6 +97,63 @@ function handleWindowTap(element) {
   deselectIcon(selectedIcon)
 }
 
+// Content for notes app
+var content = [
+  {
+    title: "Goals",
+    date: "7/4/2024",
+    content: `    
+    <div style="background-color: #fff; margin: 6px; border-radius: 12px; width: 420; height: 85%; padding: 16px; display:flex;">
+    <div id="sidebar" style="background-color: #F9F9F9; width: 120px; margin-right: 16px; padding: 16px; border-radius: 16px;">
+      <p style="margin: 0px;">Goals</p>
+      <p style="font-size: 12px; margin: 0px;">07/04/2024</p>
+    </div>
+  
+  
+    <div style="overflow-y:scroll">
+          <p contenteditable="True">
+            Drink 64fl. oz. water daily<br>
+            Skincare routine morning & night<br>
+            Become a pro hack clubber<br>
+  
+          </p>
+    </div>
+  </div>
+
+    `
+  }
+]
+
+function setNotesContent(index) {
+
+  var notesContent = document.querySelector("#notesContent")
+
+  notesContent.innerHTML = content[index].content
+}
+
+
+
+function addToSideBar(index) {
+ // var sidebar = document.querySelector("#sidebar");
+  var note = content[index];
+  var newDiv = document.createElement("div");
+  newDiv.innerHTML = `
+  <p style="margin: 0px;">
+    ${note.title}
+  </p>
+  <p style="font-size: 12px; margin: 0px;">
+    ${note.date}
+  </p>
+`;
+newDiv.addEventListener("click", function() {
+  setNotesContent(index);
+});
+// sidebar.appendChild(newDiv);
+}
+for (let i = 0; i < content.length; i++) {
+  addToSideBar(i)
+}
+setNotesContent(0)
 //dragging stuff
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
