@@ -72,8 +72,6 @@ photosApp.addEventListener("click", function() {
 var cameraApp = document.querySelector("#cameraicon")
 cameraApp.addEventListener("click", function() {
   handleIconTap(cameraApp, cameraScreen);
-  console.log("Starting camera..")
-  await startCamera()
 })
 
 
@@ -176,13 +174,7 @@ var content = [
 // photo array
 var photos = [
   {
-    content: `<div><img src="malia.jpeg" class="photoAppPhoto"></div>`
-  },
-  {
     content: `<div><img src="malia2.jpeg" class="photoAppPhoto"></div>`
-  },
-  {
-    content: `<div><img src="malia3.jpeg" class="photoAppPhoto"></div>`
   },
 ]
 
@@ -200,9 +192,15 @@ function setNotesContent(index) {
 
 function setPhotosContent(index) {
 
-  var photosContent = document.querySelector("#photosContent")
+  var photosContainer = document.querySelector("#photosContent")
+  photosContainer.innerHTML = ''; //Clear existing content
 
-  photosContent.innerHTML += photos[index].content
+  // Loop through the photos array,append each photos content to the container
+  photos.forEach(photo => {
+      const photoElement = document.createElement('div');
+      photoElement.innerHTML = photo.content;
+      photosContainer.appendChild(photoElement);
+  });
 }
 for (let i = 0; i < photos.length; i++) {
   setPhotosContent(i)
@@ -234,37 +232,34 @@ for (let i = 0; i < content.length; i++) {
 
 var stream; //camera stream
 
-// Camera permission stuff
-document.addEventListener('DOMContentLoaded', function() {
-  const startCameraButton = document.getElementById('startCamera');
-  const cameraFeed = document.getElementById('cameraFeed');
-  var cameraPermission;
 
+// Camera permission stuff
+const cameraFeed = document.getElementById('cameraFeed');
+
+document.addEventListener('DOMContentLoaded', function() {
+  const startCameraButton = document.querySelector('#startCamera');
   startCameraButton.addEventListener('click', function() {
       if (!stream || stream === null) {
           startCamera();
       }
   });
 
-  var cameraPermission;
   async function startCamera() {
-  
-
-    if (cameraPermission === false) {
       try {
           // Request access to the camera
           stream = await navigator.mediaDevices.getUserMedia({ video: true });
 
-          console.log("Camera access enabled")
+          console.log("Starting camera...")
           cameraPermission = true 
           cameraFeed.srcObject = stream;
+          captureButton.style.display = `flex`;
       } catch (error) {
           console.error("Error accessing camera:", error);
           alert("Could not access the camera. Please reprompt to enable functionality!");
       }
     }
   }
-});
+);
 
 function stopCamera() {
   if (stream) {
@@ -272,8 +267,43 @@ function stopCamera() {
      const tracks = stream.getTracks();
         tracks.forEach(track => track.stop()); // Stop all tracks in the stream
       stream = null; // Reset the stream variable
+      captureButton.style.display = none
   }
 }
+
+
+// Function to capture a frame from the video stream
+function captureFrame() {
+    // Create a canvas element
+    const canvas = document.createElement('canvas');
+    canvas.width = cameraFeed.videoWidth;
+    canvas.height = cameraFeed.videoHeight;
+
+    // Draw the current frame from the video onto the canvas
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(cameraFeed, 0, 0, canvas.width, canvas.height);
+
+    // Convert the canvas content to a data URL representing the image
+    const dataURL = canvas.toDataURL('image/png');
+
+    const img = new Image();
+    img.src = dataURL;
+    console.log("Captured photo")
+    photos.push({
+      content: `<div><img src="${dataURL}" class="photoAppPhoto"></div>`
+  });
+
+  for (let i = 0; i < photos.length; i++) {
+    setPhotosContent(i)
+  } //refresh photos
+  
+
+  
+    // localStorage.setItem('capturedImage', dataURL); for server stuff soon
+}
+
+const captureButton = document.getElementById('captureButton');
+captureButton.addEventListener('click', captureFrame);
 
 
 

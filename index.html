@@ -118,14 +118,15 @@
 </div>
 
 
-<div class="window" id="camera" style="display:none; background-color:#545454; border:solid; height:92%; width:1000px; flex-direction:column;">
+<div class="window" id="camera" style="display:none; background-color:#545454; border:solid; height:92%; width:810px; flex-direction:column;">
   <div style="display:flex;position:sticky;right:1190px;">      
-    <p id="cameraheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding:0 458px; height:25px; text-align:center;justify-content:center;position:sticky;">Camera</p>
+    <p id="cameraheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding:0 362px; height:25px; text-align:center;justify-content:center;position:sticky;">Camera</p>
+    <button id="startCamera" style="position:absolute;transform: translate(3px, 2px)">Enable Video</button>
     <p id="cameraclose" style="cursor: pointer; margin:0; padding: 0 20px 0 10px; background-color:rgba(255,12,12,0.8); height:25px; " >x</p>
   </div>
-  <div>
-    <button id="startCamera" style="margin-left:12px;">Allow Camera</button>
-    <video id="cameraFeed" style="transform: scaleX(-1); width:800px; display:flex; justify-content: center;" autoplay playsinline></video>
+  <div style="display:flex;flex-direction: column;">
+    <video id="cameraFeed" style="transform: scaleX(-1); width:800px; display:block; margin:5px auto 0" autoplay playsinline></video>
+    <button id="captureButton" style="justify-content:center;background-color:rgba(0,0,0,0.2);border:0;margin:2px;display:none;cursor:pointer" ><img src="capture2.png" width="75px" height="auto"></button>
   </div>
 </div>
   
