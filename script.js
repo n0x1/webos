@@ -4,10 +4,11 @@ setInterval(function () {
 
 var topBar = document.querySelector("#sysNavBar")
 var welcomeScreen = document.querySelector("#welcome")
-var notesApp = document.querySelector("#notesicon")
 
 function closeWindow(element) {
   element.style.display = "none"
+  if (element === cameraScreen)
+    stopCamera()
 }
 
 function openWindow(element) {
@@ -15,7 +16,7 @@ function openWindow(element) {
   biggestIndex++;  // Increment biggestIndex by 1
   element.style.zIndex = biggestIndex;
   topBar.style.zIndex = biggestIndex + 1;
-}
+  }
 
 var welcomeScreenClose = document.querySelector("#welcomeclose")
 var welcomeScreenOpen = document.querySelector("#welcomeopen")
@@ -53,6 +54,7 @@ welcomeScreenOpen.addEventListener("click", function() {
   openWindow(welcomeScreen);
 });
 
+var notesApp = document.querySelector("#notesicon")
 notesApp.addEventListener("click", function() {
   handleIconTap(notesApp, notesScreen);
 });
@@ -67,29 +69,36 @@ photosApp.addEventListener("click", function() {
   handleIconTap(photosApp, photosScreen);
 });
 
-var notesScreen = document.querySelector("#notes")
+var cameraApp = document.querySelector("#cameraicon")
+cameraApp.addEventListener("click", function() {
+  handleIconTap(cameraApp, cameraScreen);
+  console.log("Starting camera..")
+  await startCamera()
+})
 
+
+var notesScreen = document.querySelector("#notes")
 var photosScreen = document.querySelector("#photos")
+var musicScreen = document.querySelector("#music");
+var cameraScreen = document.querySelector("#camera");
 
 var notesScreenClose = document.querySelector("#notesclose")
-
 var musicScreenClose = document.querySelector("#musicclose")
-
 var photosClose = document.querySelector("#photosclose")
+var cameraClose = document.querySelector("#cameraclose")
 
 notesScreenClose.addEventListener("click", () => closeWindow(notesScreen));
-
 musicScreenClose.addEventListener("click", () => closeWindow(musicScreen));
-
 photosClose.addEventListener("click", () => closeWindow(photosScreen));
+cameraClose.addEventListener("click", () => closeWindow(cameraScreen));
 
 
-
-// Make the DIV element draggable:
+// Make the DIV elements draggable:
 dragElement(document.getElementById("welcome"));
 dragElement(document.querySelector("#notes"));
 dragElement(document.querySelector("#music"));
 dragElement(document.querySelector("#photos"));
+dragElement(document.querySelector("#camera"));
 
 //z axis stuff
 var biggestIndex = 1;
@@ -100,11 +109,12 @@ function addWindowTapHandling(element) {
   )
 }
 
-var musicScreen = document.querySelector("#music");
+
 addWindowTapHandling(notesScreen);
 addWindowTapHandling(welcomeScreen);
 addWindowTapHandling(musicScreen);
-addWindowTapHandling(photosScreen)
+addWindowTapHandling(photosScreen);
+addWindowTapHandling(cameraScreen);
 
 function handleWindowTap(element) {
   biggestIndex++;  // Increment biggestIndex by 1
@@ -163,6 +173,7 @@ var content = [
   }
 ]
 
+// photo array
 var photos = [
   {
     content: `<div><img src="malia.jpeg" class="photoAppPhoto"></div>`
@@ -174,6 +185,8 @@ var photos = [
     content: `<div><img src="malia3.jpeg" class="photoAppPhoto"></div>`
   },
 ]
+
+
 
 
 function setNotesContent(index) {
@@ -219,7 +232,48 @@ for (let i = 0; i < content.length; i++) {
   addToSideBar(i)
 }
 
+var stream; //camera stream
 
+// Camera permission stuff
+document.addEventListener('DOMContentLoaded', function() {
+  const startCameraButton = document.getElementById('startCamera');
+  const cameraFeed = document.getElementById('cameraFeed');
+  var cameraPermission;
+
+  startCameraButton.addEventListener('click', function() {
+      if (!stream || stream === null) {
+          startCamera();
+      }
+  });
+
+  var cameraPermission;
+  async function startCamera() {
+  
+
+    if (cameraPermission === false) {
+      try {
+          // Request access to the camera
+          stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+          console.log("Camera access enabled")
+          cameraPermission = true 
+          cameraFeed.srcObject = stream;
+      } catch (error) {
+          console.error("Error accessing camera:", error);
+          alert("Could not access the camera. Please reprompt to enable functionality!");
+      }
+    }
+  }
+});
+
+function stopCamera() {
+  if (stream) {
+     console.log("Stopping camera..")
+     const tracks = stream.getTracks();
+        tracks.forEach(track => track.stop()); // Stop all tracks in the stream
+      stream = null; // Reset the stream variable
+  }
+}
 
 
 
@@ -246,7 +300,7 @@ function changeBackgroundImage(imageUrl) {
 }
 
 
-//dragging stuff
+// dragging stuff (Web3s)
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
   // Step 2: Set up variables to keep track of the element's position.
