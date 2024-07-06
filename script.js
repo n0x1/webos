@@ -73,22 +73,29 @@ var cameraApp = document.querySelector("#cameraicon")
 cameraApp.addEventListener("click", function() {
   handleIconTap(cameraApp, cameraScreen);
 })
+var clockApp = document.querySelector("#clockicon")
+clockApp.addEventListener("click", function() {
+  handleIconTap(clockApp, clockScreen)
+})
 
 
 var notesScreen = document.querySelector("#notes")
 var photosScreen = document.querySelector("#photos")
 var musicScreen = document.querySelector("#music");
 var cameraScreen = document.querySelector("#camera");
+var clockScreen = document.querySelector("#clock");
 
 var notesScreenClose = document.querySelector("#notesclose")
 var musicScreenClose = document.querySelector("#musicclose")
 var photosClose = document.querySelector("#photosclose")
 var cameraClose = document.querySelector("#cameraclose")
+var clockClose = document.querySelector("#clockclose");
 
 notesScreenClose.addEventListener("click", () => closeWindow(notesScreen));
 musicScreenClose.addEventListener("click", () => closeWindow(musicScreen));
 photosClose.addEventListener("click", () => closeWindow(photosScreen));
 cameraClose.addEventListener("click", () => closeWindow(cameraScreen));
+clockClose.addEventListener("click", () => closeWindow(clockScreen));
 
 
 // Make the DIV elements draggable:
@@ -97,6 +104,7 @@ dragElement(document.querySelector("#notes"));
 dragElement(document.querySelector("#music"));
 dragElement(document.querySelector("#photos"));
 dragElement(document.querySelector("#camera"));
+dragElement(document.querySelector("clock"));
 
 //z axis stuff
 var biggestIndex = 1;
@@ -113,6 +121,7 @@ addWindowTapHandling(welcomeScreen);
 addWindowTapHandling(musicScreen);
 addWindowTapHandling(photosScreen);
 addWindowTapHandling(cameraScreen);
+addWindowTapHandling(clockScreen);
 
 function handleWindowTap(element) {
   biggestIndex++;  // Increment biggestIndex by 1
@@ -232,7 +241,6 @@ for (let i = 0; i < content.length; i++) {
 
 var stream; //camera stream
 
-
 // Camera permission stuff
 const cameraFeed = document.getElementById('cameraFeed');
 
@@ -272,7 +280,7 @@ function stopCamera() {
 }
 
 
-// Function to capture a frame from the video stream
+
 function captureFrame() {
     // Create a canvas element
     const canvas = document.createElement('canvas');
@@ -303,7 +311,11 @@ function captureFrame() {
 }
 
 const captureButton = document.getElementById('captureButton');
-captureButton.addEventListener('click', captureFrame);
+captureButton.addEventListener('click', function() {
+  shutterSound.currentTime = 0; 
+  shutterSound.play(); 
+  captureFrame();
+});
 
 
 
@@ -328,6 +340,45 @@ document.getElementById('changeWallpaper').addEventListener('submit', function(e
 function changeBackgroundImage(imageUrl) {
   document.getElementById('wallpaper').style.backgroundImage = `url(${imageUrl})`;
 }
+
+
+//Sound effects
+
+const shutterSound = document.getElementById("shutterSound")
+const timerSound = document.getElementById("timerSound")
+//timer
+function startTimer() {
+        const durationInput = document.getElementById('duration');
+        const duration = parseInt(durationInput.value); 
+        const endTime = Date.now() + duration * 1000; 
+        const countdownElement = document.getElementById('countdown');
+
+        timerInterval = setInterval(updateCountdown, 1000);
+
+
+        function updateCountdown() {
+            const remainingTime = endTime - Date.now();
+            if (remainingTime <= 0) {
+              console.log("timing");
+                clearInterval(timerInterval);
+                countdownElement.textContent = '00:00';
+                const timerSound = document.getElementById("timerSound")
+                timerSound.play();
+            } else {
+                countdownElement.textContent = formatTime(remainingTime / 1000);
+            }
+        }
+
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainderSeconds = Math.floor(seconds % 60);
+            const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
+            const displaySeconds = remainderSeconds < 10 ? '0' + remainderSeconds : remainderSeconds;
+            return `${displayMinutes}:${displaySeconds}`;
+        }
+    }
+
 
 
 // dragging stuff (Web3s)

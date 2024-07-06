@@ -8,9 +8,9 @@
   </head>
 
   <body id="wallpaper" style="background-image:url(bliss.jpeg); background-size:cover; margin:0; width:100vw; height:100vh; overflow-y: hidden; font-family: 'Roboto Mono', monospace">
-    <div class="sysNavBar" style="display:flex; margin: 0; justify-content:space-between; gap:32px; align-items:center; width:100vw; background-color:rgba(0,0,0,0.5); backdrop-filter: blur(10px); height:5%">
+    <div class="sysNavBar" style="display:flex; margin: 0; justify-content:space-between; gap:32px; align-items:center; width:100vw; position:fixed; background-color:rgba(0,0,0,0.5); backdrop-filter: blur(10px); height:5%">
       <p id="welcomeopen" style="cursor: pointer; box-shadow: 1px 1px 5px purple, -1px -1px 4px cyan; background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-left:12px;">
-        System: cOS v2K ⚙️
+        System Settings ⚙️
       </p>
       <p id="sysTime" style="background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-right:12px;">
         Loading...
@@ -23,7 +23,7 @@
         <p style="cursor: pointer; margin:0; background-color:rgba(255,12,12,0.8); padding:0 20px 0 7px; height:25px;" id="welcomeclose">x</p>
       </div> 
     <div style="overflow:scroll;margin:0 4px;box-shadow:0 1px black">
-      <h1 style="text-align: center;margin-bottom:0;padding-bottom:0;">welcome to cOS</h1>
+      <h1 style="text-align: center;margin-bottom:0;padding-bottom:0;">welcome to BlissOS v2K</h1>
       <p style="text-align:center;margin-bottom:1px;padding-bottom:1px;">A highly-customizable, browser-based, clutter-free OS designed for all facets of daily life.<br></p>
       <p style="text-align: center;font-size:10px;margin-top:0px;"><i>repopen this settings page by clicking in the top left</i></p>
     </div>
@@ -51,7 +51,7 @@
 
   </div>
 
-<div id="desktopApps" style="padding-top: 64px; padding-left: 16px;">
+<div id="desktopApps" style="padding-top: 64px; padding-left: 16px;float:left;">
 
   <div class="icon" id="notesicon">
     <img src="./notebook.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
@@ -69,6 +69,11 @@
     <img src="./camera.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
     <p style="margin: 0px; color: #fff;">Camera</p>
   </div>
+  <div class="icon" id="clockicon">
+    <img src="./timer.jpg" style="width: 64px; height: 64px; border-radius:3px;">
+    <p style="margin: 0px; color: #fff;">Clock</p>
+  </div>
+
 </div>
 
 
@@ -130,6 +135,31 @@
   </div>
 </div>
   
+
+<div class="window" id="clock" style="display:none; background-color:#545454; border:solid; height:92%; width:810px; flex-direction:column;">
+  <div style="display:flex;position:sticky;right:1190px;">      
+    <p id="clockheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding:0 362px; height:25px; text-align:center;justify-content:center;position:sticky;">Clock</p>
+    <p id="clockclose" style="cursor: pointer; margin:0; padding: 0 20px 0 10px; background-color:rgba(255,12,12,0.8); height:25px; " >x</p>
+  </div>
+  <div style="display:flex;flex-direction:column">
+    <h1>Timer</h1>
+    <label for="duration">Enter duration in seconds:</label>
+    <input type="number" id="duration" min="1" value="60">
+    <button onclick="startTimer()">Start Timer</button>
+    <span style="font-size:30px"><div id="countdown">00:00</div></span>
+  </div>
+</div>
+
+
+<div>
+  <audio id="shutterSound">
+    <source src="shutter.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="timerSound">
+    <source src="bells.wav" type="audio/mpeg">
+  </audio>
+</div>
+
     <script src="script.js"></script>
   </body>
 </html>
