@@ -3,10 +3,11 @@
   
   <head>
     <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
     <style>@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');</style>
   </head>
 
-  <body style="background-image:url(bliss.jpeg); background-size:cover; margin:0; width:100vw; height:100vh; overflow-y: hidden; font-family: 'Roboto Mono', monospace">
+  <body id="wallpaper" style="background-image:url(bliss.jpeg); background-size:cover; margin:0; width:100vw; height:100vh; overflow-y: hidden; font-family: 'Roboto Mono', monospace">
     <div class="sysNavBar" style="display:flex; margin: 0; justify-content:space-between; gap:32px; align-items:center; width:100vw; background-color:rgba(0,0,0,0.5); backdrop-filter: blur(10px); height:5%">
       <p id="welcomeopen" style="cursor: pointer; box-shadow: 1px 1px 5px purple, -1px -1px 4px cyan; background-color:rgba(255,255,255,0.2); border-radius:3px; padding:2px 8px; margin-left:12px;">
         System: cOS v2K ⚙️
@@ -16,16 +17,37 @@
       </p>
     </div>
     
-    <div id="welcome" style="background-color: #bbbbbb; border:solid; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:80%; overflow:hidden; width:600px; display:flex;flex-direction:column;">
+    <div id="welcome" class="window" style="background-color: #bbbbbb; border:solid; border-radius:12px; position:absolute; top:50%;left:50%; transform: translate(-50%, -50%); height:80%; overflow:hidden; width:600px; display:flex;flex-direction:column;">
       <div id="notesopen" style="display:flex;">      
         <p id="welcomeheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding: 0 250px; height:25px; text-align: center;">Settings</p>
         <p style="cursor: pointer; margin:0; background-color:rgba(255,12,12,0.8); padding:0 20px 0 7px; height:25px;" id="welcomeclose">x</p>
       </div> 
-    <div style="overflow:scroll;margin:0 4px;">
+    <div style="overflow:scroll;margin:0 4px;box-shadow:0 1px black">
       <h1 style="text-align: center;margin-bottom:0;padding-bottom:0;">welcome to cOS</h1>
-      <p style="text-align:center;">A highly-customizable, clutter-free OS designed for daily life: from school or work to entertainment.<br></p>
-      <p style="text-align: center;font-size:10px;"><i>repopen this settings page by clicking in the top left</i></p>
+      <p style="text-align:center;margin-bottom:1px;padding-bottom:1px;">A highly-customizable, browser-based, clutter-free OS designed for all facets of daily life.<br></p>
+      <p style="text-align: center;font-size:10px;margin-top:0px;"><i>repopen this settings page by clicking in the top left</i></p>
     </div>
+    <div id="settingsMenu">
+      <div class="segment">
+        <form id="changeWallpaper" enctype="multipart/form-data">
+          <label>Wallpaper
+            <input type="file" name="picture" id="fileInput" accept="image/*" required/>
+          </label>
+          <button type="submit" style="cursor:pointer">Save</button>
+        </form>
+      </div>
+      <div class="segment">
+        Date & Time
+      </div>
+      <div class="segment">
+        Permissions
+      </div>
+      <div class="segment">
+        <a href="mailto:ctmanzo3@icloud.com?subject=cOS%20Feature%20Suggestion">Feature Suggestions</a>
+      </div>
+    </div>
+
+
 
   </div>
 

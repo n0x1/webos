@@ -134,8 +134,11 @@ var content = [
     content: ` 
     <div style="overflow-y:scroll">
           <p contenteditable="True">
+            cOS: Camera App saving to photos (and photo deletion), Date and Time Customization, Localization, TIMER APP, weather app, resizable windows, sound design, 
+
+
             Drink 64fl. oz. water daily<br>
-            Skincare routine morning & night<br>
+            Skincare routine (morning & night)<br>
             Become a pro hack clubber<br>
   
           </p>
@@ -220,8 +223,27 @@ for (let i = 0; i < content.length; i++) {
 
 
 
+document.getElementById('changeWallpaper').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const fileInput = document.getElementById('fileInput');
+  const file = fileInput.files[0];
 
+  if (file) {
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+          const imageUrl = e.target.result;
+          changeBackgroundImage(imageUrl);
+      };
 
+      reader.readAsDataURL(file);
+  }
+});
+
+function changeBackgroundImage(imageUrl) {
+  document.getElementById('wallpaper').style.backgroundImage = `url(${imageUrl})`;
+}
 
 
 //dragging stuff
