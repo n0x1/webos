@@ -28,19 +28,24 @@
       <p style="text-align: center;font-size:10px;margin-top:0px;"><i>repopen this settings page by clicking in the top left</i></p>
     </div>
     <div id="settingsMenu">
-      <div class="segment">
+      <div class="segment" style="display:flex; justify-content: space-between;">
         <form id="changeWallpaper" enctype="multipart/form-data">
           <label>Wallpaper
             <input type="file" name="picture" id="fileInput" accept="image/*" required/>
           </label>
-          <button type="submit" style="cursor:pointer">Save</button>
+          <span style="margin-left:165px;">
+            <button type="submit" style="cursor:pointer">Save</button>
+          </span>
         </form>
       </div>
       <div class="segment">
         Date & Time
       </div>
       <div class="segment">
-        Permissions
+        Desktop Icons<button onclick="changeDesktopAlignment()" style="margin-left:16px;">Switch Alignment</button>
+      </div>
+      <div class="segment" id="userOS" style="margin-top:20px;">
+        System Info:
       </div>
       <div class="segment">
         <a href="mailto:ctmanzo3@icloud.com?subject=cOS%20Feature%20Suggestion">Feature Suggestions</a>
@@ -51,7 +56,7 @@
 
   </div>
 
-<div id="desktopApps" style="padding-top: 64px; padding-left: 16px;float:left;">
+<div id="desktopApps" style="padding-top: 64px; padding-left: 16px;float:left;display:inline">
 
   <div class="icon" id="notesicon">
     <img src="./notebook.jpeg" style="width: 64px; height: 64px; border-radius:3px;">
@@ -136,16 +141,19 @@
 </div>
   
 
-<div class="window" id="clock" style="display:none; background-color:#545454; border:solid; height:92%; width:810px; flex-direction:column;">
+<div class="window" id="clock" style="display:none; background-color:#545454; border:solid; height:30%; width:300px; flex-direction:column;">
   <div style="display:flex;position:sticky;right:1190px;">      
-    <p id="clockheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding:0 362px; height:25px; text-align:center;justify-content:center;position:sticky;">Clock</p>
+    <p id="clockheader" style="cursor: grab; background-color: rgba(255,255,255,0.4); margin: 0; padding:0 110px; height:25px; text-align:center;justify-content:center;position:sticky;">Clock</p>
     <p id="clockclose" style="cursor: pointer; margin:0; padding: 0 20px 0 10px; background-color:rgba(255,12,12,0.8); height:25px; " >x</p>
   </div>
-  <div style="display:flex;flex-direction:column">
+  <div style="display:flex;flex-direction:column; padding: 0 4px;">
     <h1>Timer</h1>
     <label for="duration">Enter duration in seconds:</label>
     <input type="number" id="duration" min="1" value="60">
-    <button onclick="startTimer()">Start Timer</button>
+    <div style="flex-direction:row">
+      <button style="width:200px;background-color: green;" onclick="startTimer()">Start Timer</button>
+      <button style="flex-grow:1;background-color: red;" onclick="stopTimer()">Stop Timer</button>
+    </div>
     <span style="font-size:30px"><div id="countdown">00:00</div></span>
   </div>
 </div>

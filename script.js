@@ -104,7 +104,7 @@ dragElement(document.querySelector("#notes"));
 dragElement(document.querySelector("#music"));
 dragElement(document.querySelector("#photos"));
 dragElement(document.querySelector("#camera"));
-dragElement(document.querySelector("clock"));
+dragElement(document.querySelector("#clock"));
 
 //z axis stuff
 var biggestIndex = 1;
@@ -245,6 +245,10 @@ var stream; //camera stream
 const cameraFeed = document.getElementById('cameraFeed');
 
 document.addEventListener('DOMContentLoaded', function() {
+  var browserVersion = navigator.appVersion;
+var browserSettingsHTML = document.getElementById('userOS')
+var contentIwannashow = `BlissOS v2K running on ${browserVersion}`
+browserSettingsHTML.innerHTML = contentIwannashow;
   const startCameraButton = document.querySelector('#startCamera');
   startCameraButton.addEventListener('click', function() {
       if (!stream || stream === null) {
@@ -341,43 +345,71 @@ function changeBackgroundImage(imageUrl) {
   document.getElementById('wallpaper').style.backgroundImage = `url(${imageUrl})`;
 }
 
+// Change desktop icons alignment
+function changeDesktopAlignment() {
+    var desktopApps = document.getElementById('desktopApps');
+    var computedStyle = window.getComputedStyle(desktopApps);
+    if (computedStyle.float === 'right') {
+      desktopApps.style.float = 'left';
+  } else if (computedStyle.float === 'left') {
+      desktopApps.style.float = 'right';
+  } else {
+      // Handle initial state or unset inline styles
+      desktopApps.style.float = 'right'; // Default to 'right' if neither 'left' nor 'right' is set
+  }
+}
+
+
 
 //Sound effects
 
 const shutterSound = document.getElementById("shutterSound")
 const timerSound = document.getElementById("timerSound")
 //timer
-function startTimer() {
-        const durationInput = document.getElementById('duration');
-        const duration = parseInt(durationInput.value); 
-        const endTime = Date.now() + duration * 1000; 
-        const countdownElement = document.getElementById('countdown');
+let timerInterval;
+        let endTime;
+        let isTimerRunning = false;
 
-        timerInterval = setInterval(updateCountdown, 1000);
+        function startTimer() {
+            if (isTimerRunning) return; // Prevent starting multiple timers
+            const durationInput = document.getElementById('duration');
+            const duration = parseInt(durationInput.value); // in seconds
+            endTime = Date.now() + duration * 1000; // end time in milliseconds
+            const countdownElement = document.getElementById('countdown');
+            isTimerRunning = true;
 
+            // Update countdown every second
+            timerInterval = setInterval(updateCountdown, 1000);
 
-        function updateCountdown() {
-            const remainingTime = endTime - Date.now();
-            if (remainingTime <= 0) {
-              console.log("timing");
-                clearInterval(timerInterval);
-                countdownElement.textContent = '00:00';
-                const timerSound = document.getElementById("timerSound")
-                timerSound.play();
-            } else {
-                countdownElement.textContent = formatTime(remainingTime / 1000);
+            function updateCountdown() {
+                const remainingTime = endTime - Date.now();
+                if (remainingTime <= 0) {
+                    stopTimer();
+                    countdownElement.textContent = '00:00';
+                    timerSound.play();
+                } else {
+                    countdownElement.textContent = formatTime(remainingTime / 1000);
+                }
+            }
+
+            function playSound() {
+                const audio = new Audio('sound.wav'); // Replace 'sound.wav' with your sound file
+                audio.play();
+            }
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainderSeconds = Math.floor(seconds % 60);
+                const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
+                const displaySeconds = remainderSeconds < 10 ? '0' + remainderSeconds : remainderSeconds;
+                return `${displayMinutes}:${displaySeconds}`;
             }
         }
 
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainderSeconds = Math.floor(seconds % 60);
-            const displayMinutes = minutes < 10 ? '0' + minutes : minutes;
-            const displaySeconds = remainderSeconds < 10 ? '0' + remainderSeconds : remainderSeconds;
-            return `${displayMinutes}:${displaySeconds}`;
+        function stopTimer() {
+            clearInterval(timerInterval);
+            isTimerRunning = false;
         }
-    }
 
 
 
